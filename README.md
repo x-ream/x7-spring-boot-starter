@@ -7,6 +7,7 @@
 
 ## [x7-spring-boot-starter](https://github.com/x-ream/x7-spring-boot-starter)
 
+## x7/x7-repo [DETAILED README](https://github.com/x-ream/x7/blob/master/x7-repo/README.md)
 
 ###  如何使用第三方id生成器
        1. @SpringBootApplication(exclude = IdGeneratorAutoConfiguration.class)
