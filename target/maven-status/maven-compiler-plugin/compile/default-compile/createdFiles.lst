@@ -1,0 +1,15 @@
+io/xream/x7/ParserStarter.class
+io/xream/x7/EnableX7Lock.class
+io/xream/x7/config/LongToLocalDateTimeDeserializer.class
+io/xream/x7/EnableX7L2Caching.class
+io/xream/x7/listener/IdGeneratorBootListener.class
+io/xream/x7/config/LocalDateTimeToLongSerializer.class
+io/xream/x7/config/DateToLongSerializer.class
+io/xream/x7/config/JacksonConfig.class
+io/xream/x7/X7Data.class
+io/xream/x7/EnableX7Repository.class
+io/xream/x7/RepositoryBeanRegistrar.class
+io/xream/x7/RepositoryStarter.class
+io/xream/x7/listener/RepositoryListener.class
+io/xream/x7/L2CacheStarter.class
+io/xream/x7/EnableDateToLongForJackson.class

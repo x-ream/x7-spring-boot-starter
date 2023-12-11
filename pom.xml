@@ -1,0 +1,213 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.xream.x7</groupId>
+	<artifactId>x7-spring-boot-starter</artifactId>
+	<version>3.2.0</version>
+	<name>x7-spring-boot-starter</name>
+	<description>http://x7.xream.io</description>
+	<packaging>jar</packaging>
+	<url>http:/x7.xream.io</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>21</java.version>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.compilerVersion>21</maven.compiler.compilerVersion>
+		<maven.test.skip>true</maven.test.skip>
+		<springboot.version>3.2.0</springboot.version>
+		<spring.version>6.1.1</spring.version>
+		<commons-pool2.version>2.12.0</commons-pool2.version>
+		<jackson.version>2.16.0</jackson.version>
+		<slf4j.version>2.0.9</slf4j.version>
+		<sqli.version>2.1.5</sqli.version>
+		<x7.version>3.1.5</x7.version>
+	</properties>
+
+
+	<scm>
+		<connection>scm:git:https://github.com/x-ream/x7-spring-boot-starter</connection>
+		<developerConnection>scm:git:https://github.com/x-ream/x7-spring-boot-starter</developerConnection>
+		<url>scm:git:https://github.com/x-ream/x7-spring-boot-starter</url>
+		<tag>3.2.0</tag>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Sim Wang</name>
+			<email>8966188@qq.com</email>
+		</developer>
+	</developers>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>oss-s</id>
+			<name>x7 snapshots repo</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>oss-r</id>
+			<name>x7 release repo</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${springboot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.xream.sqli</groupId>
+			<artifactId>sqli-builder</artifactId>
+			<version>${sqli.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.xream.sqli</groupId>
+			<artifactId>sqli-core</artifactId>
+			<version>${sqli.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.xream.sqli</groupId>
+			<artifactId>sqli-repo</artifactId>
+			<version>${sqli.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.xream.sqli</groupId>
+			<artifactId>sqli-dialect</artifactId>
+			<version>${sqli.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.xream.x7</groupId>
+			<artifactId>x7-id-generator</artifactId>
+			<version>${x7.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.xream.x7</groupId>
+			<artifactId>x7-lock</artifactId>
+			<version>${x7.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.xream.x7</groupId>
+			<artifactId>x7-sqli</artifactId>
+			<version>${x7.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.xream.x7</groupId>
+			<artifactId>x7-jdbc-template-plus</artifactId>
+			<version>${x7.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.xream.x7</groupId>
+			<artifactId>x7-redis-integration</artifactId>
+			<version>${x7.version}</version>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.6.3</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<charset>UTF-8</charset>
+					<docencoding>UTF-8</docencoding>
+					<additionalJOption>-Xdoclint:none</additionalJOption>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.3.0</version>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<id>source-jar</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+	</build>
+
+</project>
