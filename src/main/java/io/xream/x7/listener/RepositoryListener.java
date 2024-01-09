@@ -46,6 +46,8 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.Map;
+
 
 public class RepositoryListener implements
         SmartApplicationListener {
@@ -87,10 +89,12 @@ public class RepositoryListener implements
         try {
             IdGenerator idGenerator = applicationStartedEvent.getApplicationContext()
                     .getBean(IdGenerator.class);
-            DefaultRepositoryX defaultRepository = applicationStartedEvent.getApplicationContext()
-                    .getBean(DefaultRepositoryX.class);
-            if (defaultRepository != null && idGenerator != null) {
-                defaultRepository.setIdGenerator(idGenerator);
+            Map<String, DefaultRepositoryX> beansOfType = applicationStartedEvent.getApplicationContext()
+                    .getBeansOfType(DefaultRepositoryX.class);
+            if (beansOfType != null && beansOfType.size() > 0) {
+                for (Map.Entry<String, DefaultRepositoryX> stringDefaultRepositoryXEntry : beansOfType.entrySet()) {
+                    stringDefaultRepositoryXEntry.getValue().setIdGenerator(idGenerator);
+                }
             }
         }catch (Exception e) {
 
