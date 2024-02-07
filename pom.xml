@@ -17,13 +17,13 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
 		<maven.test.skip>true</maven.test.skip>
-		<springboot.version>3.2.0</springboot.version>
-		<spring.version>6.1.1</spring.version>
+		<springboot.version>3.2.2</springboot.version>
+		<spring.version>6.1.3</spring.version>
 		<commons-pool2.version>2.12.0</commons-pool2.version>
 		<jackson.version>2.16.0</jackson.version>
 		<slf4j.version>2.0.9</slf4j.version>
-		<sqli.version>2.1.5</sqli.version>
-		<x7.version>3.1.5</x7.version>
+		<sqli.version>2.1.6</sqli.version>
+		<x7.version>3.1.6</x7.version>
 	</properties>
 
 
