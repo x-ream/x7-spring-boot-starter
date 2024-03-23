@@ -28,7 +28,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.service.annotation.HttpExchange;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -62,10 +61,6 @@ public class HttpExchangeRegistrar implements ImportBeanDefinitionRegistrar {
         for (Class clz : set) {
             Annotation annotation = clz.getAnnotation(HttpExchange.class);
             if (annotation == null)
-                continue;
-
-            Type[] types = clz.getGenericInterfaces();
-            if (types.length == 0)
                 continue;
 
             list.add(clz);

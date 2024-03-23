@@ -17,7 +17,6 @@
 package io.xream.x7;
 
 import io.xream.x7.lock.LockAspect;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
