@@ -83,13 +83,26 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
@@ -103,19 +116,16 @@
 			<artifactId>sqli-builder</artifactId>
 			<version>${sqli.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.xream.sqli</groupId>
 			<artifactId>sqli-core</artifactId>
 			<version>${sqli.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.xream.sqli</groupId>
 			<artifactId>sqli-repo</artifactId>
 			<version>${sqli.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.xream.sqli</groupId>
 			<artifactId>sqli-dialect</artifactId>
