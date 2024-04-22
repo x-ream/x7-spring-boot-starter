@@ -23,8 +23,8 @@ import io.xream.x7.exception.Remote3xxException;
 import io.xream.x7.exception.Remote4xxException;
 import io.xream.x7.exception.Remote5xxException;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.client.ClientHttpRequestExecution;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.RestTemplate;
@@ -45,6 +45,7 @@ import java.util.List;
 
 public class HttpBeanFactory<T>  {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpBeanFactory.class);
     private final Class<T> interfaceType;
 
     public HttpBeanFactory(Class<T> interfaceType) {
@@ -83,14 +84,19 @@ public class HttpBeanFactory<T>  {
             ClientHttpResponse rep = execution.execute(request,body);
             if (rep.getStatusCode().is2xxSuccessful() ) {
                 return rep;
-            }else if (rep.getStatusCode().is4xxClientError()){
+            }
+            String uri = request.getURI().getHost()+":"+request.getURI().getPort() + request.getURI().getPath();
+            if (rep.getStatusCode().is4xxClientError()){
                 String bodyStr = toBodyString(rep.getBody());
+                LOGGER.error("Request uri:{} failed,statusCode:{},info:{}",uri,rep.getStatusCode().value(),bodyStr);
                 throw new Remote4xxException(rep.getStatusCode().value(),bodyStr);
             }else if (rep.getStatusCode().is5xxServerError()){
                 String bodyStr = toBodyString(rep.getBody());
+                LOGGER.error("Request uri:{} failed,statusCode:{},info:{}",uri,rep.getStatusCode().value(),bodyStr);
                 throw new Remote5xxException(rep.getStatusCode().value(),bodyStr);
             }else if (rep.getStatusCode().is3xxRedirection()){
                 String bodyStr = toBodyString(rep.getBody());
+                LOGGER.error("Request uri:{} failed,statusCode:{},info:{}",uri,rep.getStatusCode().value(),bodyStr);
                 throw new Remote3xxException(rep.getStatusCode().value(),bodyStr);
             }
             return rep;
