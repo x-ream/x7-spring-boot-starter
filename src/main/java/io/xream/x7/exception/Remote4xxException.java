@@ -23,9 +23,12 @@ public class Remote4xxException extends RuntimeException{
 
     private int code;
 
-    public Remote4xxException(int code, String message) {
+    private String uri;
+
+    public Remote4xxException(int code, String uri, String message) {
         super(message);
         this.code = code;
+        this.uri = uri;
     }
 
     public int getCode() {
@@ -34,5 +37,13 @@ public class Remote4xxException extends RuntimeException{
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 }

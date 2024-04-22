@@ -89,15 +89,15 @@ public class HttpBeanFactory<T>  {
             if (rep.getStatusCode().is4xxClientError()){
                 String bodyStr = toBodyString(rep.getBody());
                 LOGGER.error("Request uri:{} failed,statusCode:{},info:{}",uri,rep.getStatusCode().value(),bodyStr);
-                throw new Remote4xxException(rep.getStatusCode().value(),bodyStr);
+                throw new Remote4xxException(rep.getStatusCode().value(),uri,bodyStr);
             }else if (rep.getStatusCode().is5xxServerError()){
                 String bodyStr = toBodyString(rep.getBody());
                 LOGGER.error("Request uri:{} failed,statusCode:{},info:{}",uri,rep.getStatusCode().value(),bodyStr);
-                throw new Remote5xxException(rep.getStatusCode().value(),bodyStr);
+                throw new Remote5xxException(rep.getStatusCode().value(),uri,bodyStr);
             }else if (rep.getStatusCode().is3xxRedirection()){
                 String bodyStr = toBodyString(rep.getBody());
                 LOGGER.error("Request uri:{} failed,statusCode:{},info:{}",uri,rep.getStatusCode().value(),bodyStr);
-                throw new Remote3xxException(rep.getStatusCode().value(),bodyStr);
+                throw new Remote3xxException(rep.getStatusCode().value(),uri,bodyStr);
             }
             return rep;
         });
