@@ -18,10 +18,10 @@ package io.xream.x7.config;
 
 
 import io.micrometer.common.util.StringUtils;
-import io.xream.x7.exception.ExchangeIOException;
-import io.xream.x7.exception.Remote3xxException;
-import io.xream.x7.exception.Remote4xxException;
-import io.xream.x7.exception.Remote5xxException;
+import io.xream.x7.base.exception.Remote1xxException;
+import io.xream.x7.base.exception.Remote3xxException;
+import io.xream.x7.base.exception.Remote4xxException;
+import io.xream.x7.base.exception.Remote5xxException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,6 +98,10 @@ public class HttpBeanFactory<T>  {
                 String bodyStr = toBodyString(rep.getBody());
                 LOGGER.error("Request uri:{} failed,statusCode:{},info:{}",uri,rep.getStatusCode().value(),bodyStr);
                 throw new Remote3xxException(rep.getStatusCode().value(),uri,bodyStr);
+            }else if (rep.getStatusCode().is1xxInformational()){
+                String bodyStr = toBodyString(rep.getBody());
+                LOGGER.error("Request uri:{} failed,statusCode:{},info:{}",uri,rep.getStatusCode().value(),bodyStr);
+                throw new Remote1xxException(rep.getStatusCode().value(),uri,bodyStr);
             }
             return rep;
         });
@@ -121,20 +125,20 @@ public class HttpBeanFactory<T>  {
         }catch (Exception e) {
             if (e instanceof RuntimeException)
                 throw (RuntimeException) e;
-            throw new ExchangeIOException(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }finally {
             if (output != null) {
                 try {
                     output.close();
                 }catch (IOException ioe){
-                    throw new ExchangeIOException(ioe.getMessage());
+                    throw new RuntimeException(ioe.getMessage());
                 }
             }
             if (input !=null) {
                 try {
                     input.close();
                 }catch (IOException ioe){
-                    throw new ExchangeIOException(ioe.getMessage());
+                    throw new RuntimeException(ioe.getMessage());
                 }
             }
         }
