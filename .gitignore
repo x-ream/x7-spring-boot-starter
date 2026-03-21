@@ -1,4 +1,7 @@
 /target/
+target/
+classes/
+test-classes/
 .idea
 *.iml
 # Compiled class file
